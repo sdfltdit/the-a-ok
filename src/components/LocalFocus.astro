@@ -1,0 +1,57 @@
+---
+const divisions = [
+  'Dhaka', 'Chattogram', 'Khulna', 'Rajshahi',
+  'Barishal', 'Sylhet', 'Rangpur', 'Mymensingh',
+];
+---
+
+<section class="local">
+  <div class="wrap center">
+    <p class="eyebrow">শুধু বাংলাদেশের জন্য · Built exclusively for Bangladesh</p>
+    <h2 class="step-5">If you live it, you belong here.</h2>
+    <p class="lede">
+      No matter which division you call home, The A-OK is built around
+      Bangladesh — its calendar, its cities, its languages.
+    </p>
+
+    <ul class="chips reveal" aria-label="Bangladesh divisions">
+      {divisions.map((d) => (
+        <li>{d}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .local { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+  .center { text-align: center; }
+  .local .eyebrow { display: inline-flex; }
+  h2.step-5 {
+    font-size: var(--step-5);
+    color: var(--forest);
+    margin-top: 0.85rem;
+  }
+  .lede {
+    max-width: 50ch;
+    margin: 1rem auto 0;
+    color: var(--ink-soft);
+  }
+  .chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+    margin: 2.25rem 0 0;
+    padding: 0;
+  }
+  .chips li {
+    padding: 0.5em 1.1em;
+    border-radius: 999px;
+    background: var(--paper-card);
+    border: 1px solid rgba(16, 56, 41, 0.14);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--forest);
+  }
+</style>

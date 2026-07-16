@@ -1,0 +1,142 @@
+---
+const columns = [
+  {
+    title: 'Platform',
+    links: [
+      { label: 'Explore', href: '#explore' },
+      { label: 'Learn', href: '#learn' },
+      { label: 'Connect', href: '#connect' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About', href: '#main' },
+      { label: 'Contact', href: 'mailto:hello@the-a-ok.com' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Privacy', href: '#' },
+      { label: 'Terms', href: '#' },
+    ],
+  },
+];
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <div class="footer-brand">
+      <a href="#main" class="brand">
+        <img src="/images/logo.jpg" alt="" width="30" height="30" />
+        <span>The A-OK</span>
+      </a>
+      <p class="tag bn">সবার জন্য, বাংলাদেশের জন্য।</p>
+    </div>
+
+    <div class="footer-cols">
+      {columns.map((col) => (
+        <div class="col">
+          <h4>{col.title}</h4>
+          <ul>
+            {col.links.map((l) => (
+              <li><a href={l.href}>{l.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="footer-social" aria-label="Social links">
+      <a href="#" aria-label="Facebook">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M14 9h-1.5A1.5 1.5 0 0 0 11 10.5V12h3l-.4 3H11v6"/></svg>
+      </a>
+      <a href="#" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+      </a>
+      <a href="#" aria-label="YouTube">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="M11 10l4 2-4 2z" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <p>© {year} The A-OK. Made in Bangladesh, for Bangladesh.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--forest-deep);
+    color: rgba(241, 244, 236, 0.85);
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr auto;
+    gap: clamp(2rem, 5vw, 3rem);
+    padding-block: clamp(2.5rem, 6vw, 4rem) 2.5rem;
+  }
+  .footer-brand .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--paper);
+  }
+  .footer-brand .brand img { border-radius: 8px; }
+  .footer-brand .tag {
+    margin-top: 0.75rem;
+    color: rgba(241, 244, 236, 0.6);
+    font-size: 0.95rem;
+  }
+  .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    gap: 1.5rem;
+  }
+  .col h4 {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(241, 244, 236, 0.55);
+    margin-bottom: 0.9rem;
+  }
+  .col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+  .col a { font-size: 0.95rem; color: rgba(241, 244, 236, 0.85); }
+  .col a:hover { color: var(--marigold); }
+
+  .footer-social {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .footer-social a {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(241, 244, 236, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(241, 244, 236, 0.85);
+    transition: background 0.25s var(--ease), color 0.25s var(--ease);
+  }
+  .footer-social a:hover { background: var(--marigold); color: var(--forest-deep); border-color: var(--marigold); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(241, 244, 236, 0.12);
+    padding-block: 1.25rem;
+    font-size: 0.85rem;
+    color: rgba(241, 244, 236, 0.55);
+  }
+
+  @media (max-width: 760px) {
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-social { margin-top: 0.5rem; }
+  }
+</style>

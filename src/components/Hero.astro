@@ -1,0 +1,149 @@
+---
+---
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">তৈরি হয়েছে বাংলাদেশের জন্য · Made for Bangladesh</p>
+      <h1 class="step-6">Explore.<br />Learn.<br />Connect.</h1>
+      <p class="tagline bn">একটাই জায়গা — খুঁজে নাও, শিখে নাও, যুক্ত হও।</p>
+      <p class="lede">
+        The A-OK is a home base built only for people in Bangladesh — to
+        discover real opportunities, learn skills that matter, and connect
+        with people who get it.
+      </p>
+      <div class="hero-actions">
+        <a href="#join" class="btn btn-primary">Join the community</a>
+        <a href="#explore" class="btn btn-ghost">See how it works</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="video-frame">
+        <video
+          id="hero-video"
+          poster="/images/hero-poster.jpg"
+          muted
+          loop
+          playsinline
+          preload="none"
+        >
+          <source src="/video/the-a-ok.mp4" type="video/mp4" />
+        </video>
+        <button id="video-toggle" class="video-toggle" aria-pressed="true" aria-label="Pause video">
+          <svg id="icon-pause" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2" width="4" height="12" rx="1"/><rect x="9" y="2" width="4" height="12" rx="1"/></svg>
+          <svg id="icon-play" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display:none"><path d="M4 2.5v11l9-5.5z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(2.5rem, 6vw, 5.5rem) clamp(3rem, 7vw, 6rem);
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .hero-copy .eyebrow { margin-bottom: 1.1rem; }
+  h1.step-6 {
+    font-size: var(--step-6);
+    color: var(--forest);
+  }
+  .tagline {
+    font-size: var(--step-3);
+    color: var(--forest);
+    margin-top: 0.9rem;
+  }
+  .lede {
+    max-width: 46ch;
+    margin-top: 1.35rem;
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.1rem;
+  }
+  .btn-ghost { color: var(--forest); }
+
+  .hero-visual { position: relative; }
+  .video-frame {
+    position: relative;
+    border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    box-shadow: 0 30px 60px -25px rgba(16, 56, 41, 0.35);
+    background: var(--forest);
+  }
+  .video-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .video-toggle {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(20, 35, 28, 0.55);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s var(--ease), transform 0.25s var(--ease);
+  }
+  .video-toggle:hover { background: rgba(20, 35, 28, 0.75); transform: scale(1.06); }
+
+  @media (max-width: 880px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-visual { order: -1; max-width: 420px; margin-inline: auto; width: 100%; }
+  }
+</style>
+
+<script>
+  const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+  const toggle = document.getElementById('video-toggle');
+  const iconPause = document.getElementById('icon-pause');
+  const iconPlay = document.getElementById('icon-play');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const setPlayingUI = (playing: boolean) => {
+    toggle?.setAttribute('aria-pressed', String(playing));
+    toggle?.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
+    if (iconPause && iconPlay) {
+      iconPause.style.display = playing ? '' : 'none';
+      iconPlay.style.display = playing ? 'none' : '';
+    }
+  };
+
+  if (video) {
+    video.preload = prefersReduced ? 'metadata' : 'auto';
+    if (!prefersReduced) {
+      video.play().catch(() => setPlayingUI(false));
+    } else {
+      setPlayingUI(false);
+    }
+
+    toggle?.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        setPlayingUI(true);
+      } else {
+        video.pause();
+        setPlayingUI(false);
+      }
+    });
+  }
+</script>

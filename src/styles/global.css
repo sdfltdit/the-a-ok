@@ -1,0 +1,175 @@
+/* ============================================================
+   THE A-OK — design tokens
+   Palette drawn from Bangladesh's own visual world: deep paddy-
+   field green, marigold-garland gold, and warm paper — rather
+   than a generic "tech landing page" palette.
+   ============================================================ */
+:root {
+  /* Color */
+  --ink: #14231c;
+  --ink-soft: #3d5347;
+  --paper: #f1f4ec;
+  --paper-card: #fffdf7;
+  --forest: #103829;
+  --forest-deep: #0a2a1e;
+  --forest-line: rgba(241, 244, 236, 0.16);
+  --marigold: #e8a93c;
+  --marigold-deep: #c98a24;
+  --marigold-ink: #4a3512;
+
+  /* Type */
+  --font-display: 'Fraunces', 'Tiro Bangla', ui-serif, Georgia, serif;
+  --font-body: 'Manrope', 'Hind Siliguri', ui-sans-serif, system-ui, sans-serif;
+  --font-bn-display: 'Tiro Bangla', 'Fraunces', serif;
+  --font-bn-body: 'Hind Siliguri', 'Manrope', sans-serif;
+
+  /* Scale */
+  --step-6: clamp(2.75rem, 2.1rem + 3vw, 5rem);
+  --step-5: clamp(2.1rem, 1.7rem + 2vw, 3.25rem);
+  --step-4: clamp(1.6rem, 1.4rem + 1vw, 2.25rem);
+  --step-3: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --step-1: 1.0625rem;
+  --step-0: 0.95rem;
+
+  /* Layout */
+  --container: 1200px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 10px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: light; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-1);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video { max-width: 100%; display: block; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.08;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.bn {
+  font-family: var(--font-bn-body);
+}
+h1.bn, h2.bn, h3.bn, .bn-display {
+  font-family: var(--font-bn-display);
+  font-weight: 500;
+}
+
+.wrap {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--marigold-deep);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.85em 1.6em;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 1.5px solid transparent;
+  transition: transform 0.3s var(--ease), background 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--marigold);
+  color: var(--marigold-ink);
+  box-shadow: 0 8px 20px -8px rgba(232, 169, 60, 0.7);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(232, 169, 60, 0.8); }
+.btn-ghost {
+  background: transparent;
+  border-color: currentColor;
+  color: inherit;
+}
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.08); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 2.5px solid var(--marigold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Content is visible by default no matter what — JS only ever ADDS a
+   hidden starting-state (html.js-reveal), so a script error, a blocked
+   script, or a no-JS browser all fail safe into "just show everything". */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+html.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+html.js-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}

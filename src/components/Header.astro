@@ -1,0 +1,126 @@
+---
+const links = [
+  { href: '#explore', label: 'Explore' },
+  { href: '#learn', label: 'Learn' },
+  { href: '#connect', label: 'Connect' },
+];
+---
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a href="#main" class="brand" aria-label="The A-OK home">
+      <img src="/images/logo.jpg" alt="" width="34" height="34" class="brand-mark" />
+      <span class="brand-word">The A-OK</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <ul>
+        {links.map((l) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <a class="btn btn-primary cta" href="#join">Join the community</a>
+
+    <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <ul id="mobile-nav" class="mobile-nav">
+    {links.map((l) => (
+      <li><a href={l.href}>{l.label}</a></li>
+    ))}
+    <li><a href="#join" class="btn btn-primary">Join the community</a></li>
+  </ul>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(241, 244, 236, 0.78);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom: 1px solid rgba(16, 56, 41, 0.08);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    padding-block: 0.85rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--forest);
+    margin-right: auto;
+  }
+  .brand-mark {
+    border-radius: 9px;
+    object-fit: cover;
+  }
+  .nav ul {
+    display: flex;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav a {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: color 0.25s var(--ease);
+  }
+  .nav a:hover { color: var(--forest); }
+  .cta { flex-shrink: 0; }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+  }
+  .menu-toggle span {
+    height: 2px;
+    background: var(--forest);
+    border-radius: 2px;
+  }
+
+  .mobile-nav {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0 var(--gutter) 1.25rem;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .mobile-nav a { font-weight: 600; color: var(--ink); }
+
+  @media (max-width: 760px) {
+    .nav, .cta { display: none; }
+    .menu-toggle { display: flex; }
+    .site-header.open .mobile-nav { display: flex; }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.menu-toggle');
+  const header = document.querySelector('.site-header');
+  toggle?.addEventListener('click', () => {
+    const isOpen = header?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  });
+</script>

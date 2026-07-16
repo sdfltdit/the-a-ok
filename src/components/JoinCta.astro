@@ -1,0 +1,87 @@
+---
+import ScallopDivider from './ScallopDivider.astro';
+---
+
+<ScallopDivider tone="onForest" flip />
+<section class="join" id="join">
+  <div class="wrap join-inner">
+    <div class="join-copy">
+      <p class="eyebrow light">নাম লিখিয়ে রাখো · Register your interest</p>
+      <h2 class="step-5">Be there on day one.</h2>
+      <p class="lede">
+        Drop your email and we'll let you know the moment The A-OK opens its
+        doors — no spam, just one message when it matters.
+      </p>
+    </div>
+
+    <form class="join-form" id="join-form" novalidate>
+      <label class="visually-hidden" for="email">Email address</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        required
+        placeholder="you@example.com"
+        autocomplete="email"
+      />
+      <button type="submit" class="btn btn-primary">Notify me</button>
+    </form>
+    <p id="join-status" class="join-status" role="status" aria-live="polite"></p>
+  </div>
+</section>
+
+<style>
+  .join {
+    background: var(--forest);
+    color: var(--paper);
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+  .join-inner { text-align: center; }
+  .eyebrow.light { color: var(--marigold); justify-content: center; display: inline-flex; }
+  h2.step-5 { font-size: var(--step-5); color: var(--paper); margin-top: 0.85rem; }
+  .join-copy .lede {
+    max-width: 46ch;
+    margin: 1rem auto 0;
+    color: rgba(241, 244, 236, 0.82);
+  }
+  .join-form {
+    margin: 2.25rem auto 0;
+    display: flex;
+    gap: 0.75rem;
+    max-width: 460px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .join-form input {
+    flex: 1 1 240px;
+    padding: 0.9em 1.1em;
+    border-radius: 999px;
+    border: 1.5px solid rgba(241, 244, 236, 0.35);
+    background: rgba(241, 244, 236, 0.08);
+    color: var(--paper);
+    font-size: 1rem;
+  }
+  .join-form input::placeholder { color: rgba(241, 244, 236, 0.55); }
+  .join-form input:focus-visible { outline-color: var(--marigold); }
+  .join-status {
+    margin-top: 1rem;
+    min-height: 1.2em;
+    font-weight: 600;
+    color: var(--marigold);
+  }
+</style>
+
+<script>
+  const form = document.getElementById('join-form') as HTMLFormElement | null;
+  const status = document.getElementById('join-status');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = form.querySelector('input[type="email"]') as HTMLInputElement | null;
+    if (input && input.checkValidity() && input.value.trim()) {
+      status!.textContent = `Thanks — we'll email ${input.value.trim()} when we open.`;
+      form.reset();
+    } else {
+      status!.textContent = 'Please enter a valid email address.';
+    }
+  });
+</script>

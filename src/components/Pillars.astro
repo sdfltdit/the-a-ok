@@ -1,0 +1,104 @@
+---
+const pillars = [
+  {
+    id: 'explore',
+    num: '01',
+    img: '/images/Explore.avif',
+    title: 'Explore',
+    bn: 'খুঁজে নাও',
+    desc: 'Find opportunities, events, and stories happening across Bangladesh — sorted for where you actually live, not a global feed.',
+  },
+  {
+    id: 'learn',
+    num: '02',
+    img: '/images/Learn.jpg',
+    title: 'Learn',
+    bn: 'শিখে নাও',
+    desc: 'Pick up practical, job-ready skills through workshops and creators who teach the way that actually works for you.',
+  },
+  {
+    id: 'connect',
+    num: '03',
+    img: '/images/connect.jpg',
+    title: 'Connect',
+    bn: 'যুক্ত হও',
+    desc: "Meet people building the same things you are — in your city, your field, or just your corner of the internet.",
+  },
+];
+---
+
+<section class="pillars">
+  <div class="wrap">
+    <p class="eyebrow center">তোমার যাত্রা · The journey</p>
+    <h2 class="step-5 center">One place, three moves.</h2>
+
+    <div class="grid">
+      {pillars.map((p) => (
+        <article id={p.id} class="card reveal">
+          <div class="card-media">
+            <img src={p.img} alt="" width="600" height="450" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <span class="num">{p.num}</span>
+            <h3>{p.title} <span class="bn small">· {p.bn}</span></h3>
+            <p>{p.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pillars { padding-block: clamp(3rem, 7vw, 6rem); }
+  .center { text-align: center; }
+  .pillars .eyebrow.center { display: flex; justify-content: center; }
+  h2.step-5 {
+    font-size: var(--step-5);
+    color: var(--forest);
+    margin-top: 0.75rem;
+    margin-inline: auto;
+  }
+  .grid {
+    margin-top: clamp(2.25rem, 5vw, 3.5rem);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+  .card {
+    background: var(--paper-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(16, 56, 41, 0.08);
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 40px -24px rgba(16, 56, 41, 0.35);
+  }
+  .card-media { aspect-ratio: 4 / 3; overflow: hidden; }
+  .card-media img { width: 100%; height: 100%; object-fit: cover; }
+  .card-body { padding: 1.5rem 1.6rem 1.9rem; }
+  .num {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--marigold-deep);
+    letter-spacing: 0.08em;
+  }
+  .card h3 {
+    margin-top: 0.4rem;
+    font-size: 1.5rem;
+    color: var(--forest);
+  }
+  .bn.small { font-family: var(--font-bn-display); font-size: 0.95rem; color: var(--ink-soft); font-weight: 400; }
+  .card p {
+    margin-top: 0.6rem;
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+  }
+
+  @media (max-width: 880px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>

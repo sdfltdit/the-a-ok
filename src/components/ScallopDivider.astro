@@ -1,0 +1,40 @@
+---
+interface Props {
+  tone?: 'onPaper' | 'onForest';
+  flip?: boolean;
+}
+const { tone = 'onPaper', flip = false } = Astro.props;
+
+const COUNT = 24;
+const W = 1200;
+const SCALLOP = W / COUNT;
+let d = `M0 4`;
+for (let i = 0; i < COUNT; i++) {
+  const x0 = i * SCALLOP;
+  const xMid = x0 + SCALLOP / 2;
+  const x1 = x0 + SCALLOP;
+  d += ` Q ${xMid} ${flip ? -22 : 26} ${x1} 4`;
+}
+---
+
+<div class:list={['scallop', tone]} aria-hidden="true">
+  <svg viewBox={`0 0 ${W} 28`} preserveAspectRatio="none">
+    <path d={d} fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+  </svg>
+</div>
+
+<style>
+  .scallop {
+    width: 100%;
+    line-height: 0;
+    color: var(--marigold-deep);
+  }
+  .scallop.onForest {
+    color: rgba(232, 169, 60, 0.65);
+  }
+  .scallop svg {
+    width: 100%;
+    height: 22px;
+    display: block;
+  }
+</style>
