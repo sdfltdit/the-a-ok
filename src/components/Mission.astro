@@ -1,21 +1,16 @@
 ---
 import ScallopDivider from './ScallopDivider.astro';
+import { t } from '../i18n/translations';
+const s = t(Astro.currentLocale);
 ---
 
 <ScallopDivider tone="onPaper" />
 <section class="mission">
   <div class="wrap mission-grid">
     <div class="mission-copy reveal">
-      <p class="eyebrow light">কেন দ্য এ-ওকে · Why we exist</p>
-      <h2 class="step-5">
-        Opportunity in Bangladesh shouldn't depend on who you already know.
-      </h2>
-      <p class="lede">
-        Too much of what's genuinely useful — the right course, the right
-        community, the right next step — still travels by word of mouth. The
-        A-OK puts it in one open place, so it just takes a search, not a
-        connection.
-      </p>
+      <p class="eyebrow light">{s.mission.eyebrow}</p>
+      <h2 class="step-5">{s.mission.heading}</h2>
+      <p class="lede">{s.mission.lede}</p>
     </div>
     <div class="mission-image reveal">
       <img
@@ -32,7 +27,7 @@ import ScallopDivider from './ScallopDivider.astro';
 <style>
   .mission {
     background: var(--forest);
-    color: var(--paper);
+    color: var(--on-forest);
     padding-block: clamp(3rem, 7vw, 6rem);
   }
   .mission-grid {
@@ -44,13 +39,13 @@ import ScallopDivider from './ScallopDivider.astro';
   .eyebrow.light { color: var(--marigold); }
   h2.step-5 {
     font-size: var(--step-5);
-    color: var(--paper);
+    color: var(--on-forest);
     margin-top: 1rem;
   }
   .mission-copy .lede {
     margin-top: 1.35rem;
     max-width: 46ch;
-    color: rgba(241, 244, 236, 0.82);
+    color: var(--on-forest-soft);
     font-size: 1.06rem;
   }
   .mission-image img {

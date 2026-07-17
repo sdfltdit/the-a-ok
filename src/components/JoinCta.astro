@@ -1,30 +1,35 @@
 ---
 import ScallopDivider from './ScallopDivider.astro';
+import { t } from '../i18n/translations';
+const s = t(Astro.currentLocale);
 ---
 
 <ScallopDivider tone="onForest" flip />
 <section class="join" id="join">
   <div class="wrap join-inner">
     <div class="join-copy">
-      <p class="eyebrow light">নাম লিখিয়ে রাখো · Register your interest</p>
-      <h2 class="step-5">Be there on day one.</h2>
-      <p class="lede">
-        Drop your email and we'll let you know the moment The A-OK opens its
-        doors — no spam, just one message when it matters.
-      </p>
+      <p class="eyebrow light">{s.join.eyebrow}</p>
+      <h2 class="step-5">{s.join.heading}</h2>
+      <p class="lede">{s.join.lede}</p>
     </div>
 
-    <form class="join-form" id="join-form" novalidate>
+    <form
+      class="join-form"
+      id="join-form"
+      novalidate
+      data-success-template={s.join.success}
+      data-error-message={s.join.error}
+    >
       <label class="visually-hidden" for="email">Email address</label>
       <input
         id="email"
         name="email"
         type="email"
         required
-        placeholder="you@example.com"
+        placeholder={s.join.placeholder}
         autocomplete="email"
       />
-      <button type="submit" class="btn btn-primary">Notify me</button>
+      <button type="submit" class="btn btn-primary">{s.join.button}</button>
     </form>
     <p id="join-status" class="join-status" role="status" aria-live="polite"></p>
   </div>
@@ -33,16 +38,16 @@ import ScallopDivider from './ScallopDivider.astro';
 <style>
   .join {
     background: var(--forest);
-    color: var(--paper);
+    color: var(--on-forest);
     padding-block: clamp(3rem, 7vw, 5.5rem);
   }
   .join-inner { text-align: center; }
   .eyebrow.light { color: var(--marigold); justify-content: center; display: inline-flex; }
-  h2.step-5 { font-size: var(--step-5); color: var(--paper); margin-top: 0.85rem; }
+  h2.step-5 { font-size: var(--step-5); color: var(--on-forest); margin-top: 0.85rem; }
   .join-copy .lede {
     max-width: 46ch;
     margin: 1rem auto 0;
-    color: rgba(241, 244, 236, 0.82);
+    color: var(--on-forest-soft);
   }
   .join-form {
     margin: 2.25rem auto 0;
@@ -58,7 +63,7 @@ import ScallopDivider from './ScallopDivider.astro';
     border-radius: 999px;
     border: 1.5px solid rgba(241, 244, 236, 0.35);
     background: rgba(241, 244, 236, 0.08);
-    color: var(--paper);
+    color: var(--on-forest);
     font-size: 1rem;
   }
   .join-form input::placeholder { color: rgba(241, 244, 236, 0.55); }
@@ -77,11 +82,13 @@ import ScallopDivider from './ScallopDivider.astro';
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
     const input = form.querySelector('input[type="email"]') as HTMLInputElement | null;
+    const successTemplate = form.dataset.successTemplate || "Thanks — we'll email {email} when we open.";
+    const errorMessage = form.dataset.errorMessage || 'Please enter a valid email address.';
     if (input && input.checkValidity() && input.value.trim()) {
-      status!.textContent = `Thanks — we'll email ${input.value.trim()} when we open.`;
+      status!.textContent = successTemplate.replace('{email}', input.value.trim());
       form.reset();
     } else {
-      status!.textContent = 'Please enter a valid email address.';
+      status!.textContent = errorMessage;
     }
   });
 </script>

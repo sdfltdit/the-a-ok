@@ -16,6 +16,11 @@
   --marigold: #e8a93c;
   --marigold-deep: #c98a24;
   --marigold-ink: #4a3512;
+  /* Fixed — for text/borders on the forest/forest-deep bands, which stay
+     dark in BOTH themes. Deliberately not redefined under dark mode,
+     unlike --paper (which flips because it doubles as the page bg). */
+  --on-forest: #f1f4ec;
+  --on-forest-soft: rgba(241, 244, 236, 0.82);
 
   /* Type */
   --font-display: 'Fraunces', 'Tiro Bangla', ui-serif, Georgia, serif;
@@ -40,8 +45,23 @@
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Dark mode follows the device/browser theme automatically — no
+   manual toggle. Same brand colors, recalibrated for a dark canvas
+   rather than inverted mechanically. */
 @media (prefers-color-scheme: dark) {
-  :root { color-scheme: light; }
+  :root {
+    color-scheme: dark;
+    --ink: #eaf1e6;
+    --ink-soft: #adbdb1;
+    --paper: #0c1610;
+    --paper-card: #172619;
+    --forest: #204d38;
+    --forest-deep: #091510;
+    --forest-line: rgba(20, 56, 41, 0.4);
+    --marigold: #f0b455;
+    --marigold-deep: #f4c878;
+    --marigold-ink: #3a2810;
+  }
 }
 
 *, *::before, *::after { box-sizing: border-box; }

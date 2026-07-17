@@ -1,21 +1,16 @@
 ---
-const divisions = [
-  'Dhaka', 'Chattogram', 'Khulna', 'Rajshahi',
-  'Barishal', 'Sylhet', 'Rangpur', 'Mymensingh',
-];
+import { t } from '../i18n/translations';
+const s = t(Astro.currentLocale);
 ---
 
 <section class="local">
   <div class="wrap center">
-    <p class="eyebrow">শুধু বাংলাদেশের জন্য · Built exclusively for Bangladesh</p>
-    <h2 class="step-5">If you live it, you belong here.</h2>
-    <p class="lede">
-      No matter which division you call home, The A-OK is built around
-      Bangladesh — its calendar, its cities, its languages.
-    </p>
+    <p class="eyebrow">{s.local.eyebrow}</p>
+    <h2 class="step-5">{s.local.heading}</h2>
+    <p class="lede">{s.local.lede}</p>
 
     <ul class="chips reveal" aria-label="Bangladesh divisions">
-      {divisions.map((d) => (
+      {s.local.divisions.map((d) => (
         <li>{d}</li>
       ))}
     </ul>
@@ -30,6 +25,9 @@ const divisions = [
     font-size: var(--step-5);
     color: var(--forest);
     margin-top: 0.85rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    h2.step-5 { color: var(--ink); }
   }
   .lede {
     max-width: 50ch;
@@ -53,5 +51,11 @@ const divisions = [
     font-weight: 600;
     font-size: 0.9rem;
     color: var(--forest);
+  }
+  @media (prefers-color-scheme: dark) {
+    .chips li {
+      border-color: rgba(234, 241, 230, 0.14);
+      color: var(--ink);
+    }
   }
 </style>

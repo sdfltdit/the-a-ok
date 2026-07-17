@@ -1,0 +1,11 @@
+{
+  "name": "The A-OK",
+  "short_name": "The A-OK",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#103829",
+  "background_color": "#f1f4ec",
+  "display": "standalone"
+}

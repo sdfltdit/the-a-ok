@@ -1,25 +1,29 @@
 ---
+import { t, getLocale, localizedPath } from '../i18n/translations';
+const locale = getLocale(Astro.currentLocale);
+const s = t(Astro.currentLocale);
+
 const columns = [
   {
-    title: 'Platform',
+    title: s.footer.columns.platform,
     links: [
-      { label: 'Explore', href: '#explore' },
-      { label: 'Learn', href: '#learn' },
-      { label: 'Connect', href: '#connect' },
+      { label: s.nav.explore, href: `${localizedPath('/', locale)}#explore` },
+      { label: s.nav.learn, href: `${localizedPath('/', locale)}#learn` },
+      { label: s.nav.connect, href: `${localizedPath('/', locale)}#connect` },
     ],
   },
   {
-    title: 'Company',
+    title: s.footer.columns.company,
     links: [
-      { label: 'About', href: '#main' },
-      { label: 'Contact', href: 'mailto:hello@the-a-ok.com' },
+      { label: s.footer.about, href: localizedPath('/', locale) },
+      { label: s.footer.contact, href: 'mailto:hello@the-a-ok.com' },
     ],
   },
   {
-    title: 'Legal',
+    title: s.footer.columns.legal,
     links: [
-      { label: 'Privacy', href: '#' },
-      { label: 'Terms', href: '#' },
+      { label: s.footer.privacy, href: '#' },
+      { label: s.footer.terms, href: '#' },
     ],
   },
 ];
@@ -29,11 +33,11 @@ const year = new Date().getFullYear();
 <footer class="site-footer">
   <div class="wrap footer-top">
     <div class="footer-brand">
-      <a href="#main" class="brand">
+      <a href={localizedPath('/', locale)} class="brand">
         <img src="/images/logo.jpg" alt="" width="30" height="30" />
         <span>The A-OK</span>
       </a>
-      <p class="tag bn">সবার জন্য, বাংলাদেশের জন্য।</p>
+      <p class="tag bn">{s.footer.tagline}</p>
     </div>
 
     <div class="footer-cols">
@@ -63,7 +67,7 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="wrap footer-bottom">
-    <p>© {year} The A-OK. Made in Bangladesh, for Bangladesh.</p>
+    <p>{s.footer.copyright(year)}</p>
   </div>
 </footer>
 
@@ -71,6 +75,9 @@ const year = new Date().getFullYear();
   .site-footer {
     background: var(--forest-deep);
     color: rgba(241, 244, 236, 0.85);
+  }
+  @media (prefers-color-scheme: dark) {
+    .site-footer { color: rgba(234, 241, 230, 0.82); }
   }
   .footer-top {
     display: grid;
@@ -85,7 +92,7 @@ const year = new Date().getFullYear();
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 1.1rem;
-    color: var(--paper);
+    color: var(--on-forest);
   }
   .footer-brand .brand img { border-radius: 8px; }
   .footer-brand .tag {
@@ -138,5 +145,8 @@ const year = new Date().getFullYear();
   @media (max-width: 760px) {
     .footer-top { grid-template-columns: 1fr; }
     .footer-social { margin-top: 0.5rem; }
+  }
+  @media (max-width: 420px) {
+    .footer-cols { grid-template-columns: repeat(2, 1fr); }
   }
 </style>

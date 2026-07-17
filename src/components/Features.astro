@@ -1,33 +1,22 @@
 ---
-const rows = [
-  {
-    eyebrow: 'দক্ষতা যা কাজে লাগে · Skills that travel',
-    heading: 'Taught by people three steps ahead of you, not thirty.',
-    copy: "Every workshop on The A-OK comes from someone who's actually done the job — a working designer, a founder, a nurse on shift — not a generic syllabus.",
-    img: '/images/skill.jpg',
-    alt: 'A hands-on skills workshop in progress',
-    reverse: false,
-  },
-  {
-    eyebrow: 'একা ভাবতে হবে না · Never figure it out alone',
-    heading: "Find the three people who've solved your exact problem.",
-    copy: 'Ask a question, share a win, or find a study group or job-hunt partner in your district — small, specific circles instead of one noisy feed.',
-    img: '/images/shared.jpg',
-    alt: 'People sharing knowledge and helping each other',
-    reverse: true,
-  },
+import { t } from '../i18n/translations';
+const s = t(Astro.currentLocale);
+const images = ['/images/skill.jpg', '/images/shared.jpg'];
+const alts = [
+  'A hands-on skills workshop in progress',
+  'People sharing knowledge and helping each other',
 ];
 ---
 
 <section class="features">
   <div class="wrap">
-    {rows.map((r) => (
-      <div class:list={['row', { reverse: r.reverse }]}>
+    {s.features.rows.map((r, i) => (
+      <div class:list={['row', { reverse: i === 1 }]}>
         <div class="row-media reveal">
-          <img src={r.img} alt={r.alt} width="800" height="600" loading="lazy" />
+          <img src={images[i]} alt={alts[i]} width="800" height="600" loading="lazy" />
         </div>
         <div class="row-copy reveal">
-          <p class="eyebrow bn">{r.eyebrow}</p>
+          <p class="eyebrow">{r.eyebrow}</p>
           <h3 class="step-4">{r.heading}</h3>
           <p class="lede">{r.copy}</p>
         </div>
@@ -56,6 +45,9 @@ const rows = [
     font-size: var(--step-4);
     color: var(--forest);
     margin-top: 0.6rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    h3.step-4 { color: var(--ink); }
   }
   .row-copy .lede {
     margin-top: 1.1rem;
