@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import learnImage from '../assets/images/learn-source.jpg';
 import { t } from '../i18n/translations';
 const s = t(Astro.currentLocale);
 ---
@@ -12,7 +14,27 @@ const s = t(Astro.currentLocale);
       {s.pillars.items.map((p) => (
         <article id={p.id} class="card reveal">
           <div class="card-media">
-            <img src={`/images/${p.id === 'explore' ? 'Explore.avif' : p.id === 'learn' ? 'Learn.webp' : 'connect.webp'}`} alt="" width="600" height="450" loading="lazy" />
+            {p.id === 'learn' ? (
+              <Image
+                src={learnImage}
+                alt=""
+                width={600}
+                height={450}
+                widths={[400, 600, 900]}
+                sizes="(max-width: 880px) 100vw, 33vw"
+                format="webp"
+                quality={68}
+                loading="lazy"
+              />
+            ) : (
+              <img
+                src={`/images/${p.id === 'explore' ? 'Explore.avif' : 'connect.webp'}`}
+                alt=""
+                width="600"
+                height="450"
+                loading="lazy"
+              />
+            )}
           </div>
           <div class="card-body">
             <span class="num">{p.num}</span>

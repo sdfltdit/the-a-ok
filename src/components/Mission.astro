@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import challengingImage from '../assets/images/challenging-source.webp';
 import ScallopDivider from './ScallopDivider.astro';
 import { t } from '../i18n/translations';
 const s = t(Astro.currentLocale);
@@ -13,11 +15,15 @@ const s = t(Astro.currentLocale);
       <p class="lede">{s.mission.lede}</p>
     </div>
     <div class="mission-image reveal">
-      <img
-        src="/images/challenging.webp"
+      <Image
+        src={challengingImage}
         alt="A person navigating everyday life and work in Bangladesh"
-        width="2000"
-        height="1333"
+        width={1200}
+        height={800}
+        widths={[500, 800, 1200, 1600]}
+        sizes="(max-width: 860px) 100vw, 50vw"
+        format="webp"
+        quality={70}
         loading="lazy"
       />
     </div>
