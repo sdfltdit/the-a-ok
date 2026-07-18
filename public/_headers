@@ -1,0 +1,32 @@
+# Cloudflare Pages reads this file automatically (no config needed).
+# Astro content-hashes everything under /_astro/, so it's always safe to
+# cache those forever. Fonts are pinned to specific weights we chose, so
+# they're effectively permanent too. Images/video use a long-but-not-
+# immutable cache since their filenames aren't hashed — if they're ever
+# replaced, visitors pick up the change within the window below instead
+# of needing a filename change.
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=2592000
+
+/video/*
+  Cache-Control: public, max-age=2592000
+
+/favicon.ico
+  Cache-Control: public, max-age=604800
+/favicon-16x16.png
+  Cache-Control: public, max-age=604800
+/favicon-32x32.png
+  Cache-Control: public, max-age=604800
+/apple-touch-icon.png
+  Cache-Control: public, max-age=604800
+/icon-192.png
+  Cache-Control: public, max-age=604800
+/icon-512.png
+  Cache-Control: public, max-age=604800

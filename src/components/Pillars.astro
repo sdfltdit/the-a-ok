@@ -12,7 +12,7 @@ const s = t(Astro.currentLocale);
       {s.pillars.items.map((p) => (
         <article id={p.id} class="card reveal">
           <div class="card-media">
-            <img src={`/images/${p.id === 'explore' ? 'Explore.avif' : p.id === 'learn' ? 'Learn.jpg' : 'connect.jpg'}`} alt="" width="600" height="450" loading="lazy" />
+            <img src={`/images/${p.id === 'explore' ? 'Explore.avif' : p.id === 'learn' ? 'Learn.webp' : 'connect.webp'}`} alt="" width="600" height="450" loading="lazy" />
           </div>
           <div class="card-body">
             <span class="num">{p.num}</span>
