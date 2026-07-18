@@ -20,7 +20,7 @@ const s = t(Astro.currentLocale);
 
     <div class="hero-visual reveal">
       <div class="video-frame">
-        <video poster="/images/hero-poster.jpg" muted loop playsinline autoplay preload="auto">
+        <video poster="/images/hero-poster.jpg" muted loop playsinline autoplay preload="auto" fetchpriority="high">
           <source src="/video/the-a-ok.mp4" type="video/mp4" />
         </video>
       </div>
