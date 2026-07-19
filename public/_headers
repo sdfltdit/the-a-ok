@@ -1,3 +1,19 @@
+# Security headers, site-wide. This is a fully static site with no
+# user-generated content and no dynamic HTML injection anywhere in the
+# codebase (verified: no innerHTML/eval/document.write), so a fairly
+# strict policy is safe here. 'unsafe-inline' is kept for script/style
+# specifically because we intentionally inline the one early language-
+# redirect script and the whole (small) stylesheet for speed -- but no
+# script or style may load from any OTHER origin.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; require-trusted-types-for 'script'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=()
+
 # Cloudflare Pages reads this file automatically (no config needed).
 # Astro content-hashes everything under /_astro/, so it's always safe to
 # cache those forever. Fonts are pinned to specific weights we chose, so
