@@ -20,6 +20,10 @@
   --accent: #17436e;
   --accent-ink: #ffffff;
   --accent-shadow: rgba(23, 67, 110, 0.35);
+  /* The main --accent is too dark to ever work as text ON the forest
+     bands (dark-on-dark) -- this is a separate, brighter tint just for
+     that case. Verified against both --forest and --forest-deep. */
+  --accent-on-forest: #9dd0f0;
   /* Fixed — for text/borders on the forest/forest-deep bands, which stay
      dark in BOTH themes. Deliberately not redefined under dark mode,
      unlike --paper (which flips because it doubles as the page bg). */
@@ -65,6 +69,7 @@
     --accent: #e2665f;
     --accent-ink: #17191c;
     --accent-shadow: rgba(226, 102, 95, 0.4);
+    --accent-on-forest: #f5a8a3;
   }
 }
 
