@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://sdfltdit.github.io',
+  site: 'https://the-a-ok-cgl.pages.dev',
   compressHTML: true,
   build: {
     // Our whole site's CSS is ~4.6KB — inlining it removes a

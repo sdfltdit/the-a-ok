@@ -2,22 +2,24 @@
 
 /* ============================================================
    THE A-OK — design tokens
-   Palette drawn from Bangladesh's own visual world: deep paddy-
-   field green, marigold-garland gold, and warm paper — rather
-   than a generic "tech landing page" palette.
+   Light: white / near-black ink / a deep indigo blue accent (a nod
+   to Bengal's indigo-dyeing history, not a generic "corporate blue").
+   Dark: near-black / a warm red / the same paddy-field green bands —
+   echoing the flag without being a literal, garish copy of it.
+   Every pairing below is checked against WCAG AA (4.5:1) for text.
    ============================================================ */
 :root {
-  /* Color */
-  --ink: #14231c;
-  --ink-soft: #3d5347;
-  --paper: #f1f4ec;
-  --paper-card: #fffdf7;
+  /* Color — light mode (white / black / blue) */
+  --ink: #17191c;
+  --ink-soft: #4a4f55;
+  --paper: #fafafa;
+  --paper-card: #ffffff;
   --forest: #103829;
   --forest-deep: #0a2a1e;
-  --forest-line: rgba(241, 244, 236, 0.16);
-  --marigold: #e8a93c;
-  --marigold-deep: #c98a24;
-  --marigold-ink: #4a3512;
+  --forest-line: rgba(16, 56, 41, 0.12);
+  --accent: #17436e;
+  --accent-ink: #ffffff;
+  --accent-shadow: rgba(23, 67, 110, 0.35);
   /* Fixed — for text/borders on the forest/forest-deep bands, which stay
      dark in BOTH themes. Deliberately not redefined under dark mode,
      unlike --paper (which flips because it doubles as the page bg). */
@@ -48,21 +50,21 @@
 }
 
 /* Dark mode follows the device/browser theme automatically — no
-   manual toggle. Same brand colors, recalibrated for a dark canvas
-   rather than inverted mechanically. */
+   manual toggle. Black / red / green: a neutral near-black canvas so
+   the red accent and green bands both read clearly against it. */
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --ink: #eaf1e6;
-    --ink-soft: #adbdb1;
-    --paper: #0c1610;
-    --paper-card: #172619;
-    --forest: #204d38;
-    --forest-deep: #091510;
-    --forest-line: rgba(20, 56, 41, 0.4);
-    --marigold: #f0b455;
-    --marigold-deep: #f4c878;
-    --marigold-ink: #3a2810;
+    --ink: #ededed;
+    --ink-soft: #a8acb0;
+    --paper: #0a0a0a;
+    --paper-card: #1a1a1a;
+    --forest: #1f4b36;
+    --forest-deep: #081410;
+    --forest-line: rgba(237, 237, 237, 0.1);
+    --accent: #e2665f;
+    --accent-ink: #17191c;
+    --accent-shadow: rgba(226, 102, 95, 0.4);
   }
 }
 
@@ -137,7 +139,7 @@ h1.bn, h2.bn, h3.bn, .bn-display {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--marigold-deep);
+  color: var(--accent);
 }
 
 .btn {
@@ -153,17 +155,17 @@ h1.bn, h2.bn, h3.bn, .bn-display {
   white-space: nowrap;
 }
 .btn-primary {
-  background: var(--marigold);
-  color: var(--marigold-ink);
-  box-shadow: 0 8px 20px -8px rgba(232, 169, 60, 0.7);
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 8px 20px -8px var(--accent-shadow);
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(232, 169, 60, 0.8); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px var(--accent-shadow); }
 .btn-ghost {
   background: transparent;
   border-color: currentColor;
   color: inherit;
 }
-.btn-ghost:hover { background: rgba(255, 255, 255, 0.08); }
+.btn-ghost:hover { background: rgba(127, 127, 127, 0.1); }
 
 .visually-hidden {
   position: absolute;
@@ -174,7 +176,7 @@ h1.bn, h2.bn, h3.bn, .bn-display {
 }
 
 :focus-visible {
-  outline: 2.5px solid var(--marigold);
+  outline: 2.5px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
 }

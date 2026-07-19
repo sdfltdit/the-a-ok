@@ -1,0 +1,10 @@
+# The A-OK
+
+> The A-OK is a community platform built exclusively for people in Bangladesh, to explore local opportunities, learn practical skills, and connect with each other.
+
+The A-OK covers all eight divisions of Bangladesh (Dhaka, Chattogram, Khulna, Rajshahi, Barishal, Sylhet, Rangpur, Mymensingh) and is available in English and Bengali. The platform is organized around three activities: exploring opportunities and events happening locally, learning job-ready skills through workshops taught by working professionals, and connecting with other people in the same city, field, or interest area.
+
+## Pages
+
+- [Homepage (English)](https://the-a-ok-cgl.pages.dev/): Explore/Learn/Connect overview, why the platform exists, and how to join.
+- [Homepage (Bengali)](https://the-a-ok-cgl.pages.dev/bn/): Bengali-language version of the homepage.
